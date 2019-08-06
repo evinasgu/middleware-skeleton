@@ -16,6 +16,11 @@ npm install
 ```
 
 After we install the dependencies, you can run the project with the following command:
-```
+```Ruby
 DEBUG=middleware-skeleton:* npm start
+```
+
+For windows users, please execute the following command:
+```Ruby
+set DEBUG=middleware-skeleton:* & npm start
 ```
