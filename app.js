@@ -8,6 +8,7 @@ var cors = require('cors');
 var schema = require("./graphql_schemas/schema");
 var { productRoot } = require("./resolvers/product_resolver"); 
 var { clientRoot } = require("./resolvers/client_resolver");
+const { initDB, getDB} = require("./data/db")
 
 const config = require("./config.js");
 
@@ -44,7 +45,16 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(4000);
-console.log("  PROMART skeleton graphql api is running!!!");
+initDB(function(err) {
+  app.listen(port, function(err) {
+    if(err) {
+      throw err;
+    }
+    console.log("  PROMART skeleton graphql api is running!!!");
+  });
+});
+
+//app.listen(4000);
+//console.log();
 
 module.exports = app;

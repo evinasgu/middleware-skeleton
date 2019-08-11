@@ -1,11 +1,33 @@
-[
-  {
-    "config_id": "development",
-    "app_name": "Name of the app",
-    "app_description": "Here we can put the description of the app",
-    "node_port": 4000,
-    "db_name_env": "DB_NAME",
-    "db_username_env": "DB_USERNAME",
-    "db_password_env": "DB_PASSWORD"
+mongoProperties = {
+  local: {
+    connectionString: ""
+  },
+  development: {
+    connectionString: process.env.MONGO_CONNECTION_STRING      
+  },
+  production: {
+    connectionString: process.env.MONGO_CONNECTION_STRING
   }
-]
+};
+
+serverProperties = {
+  local: {
+    port: 4000
+  },
+  development: {
+    port: process.env.SERVER_PORT
+  },
+  production: {
+    port: process.env.SERVER_PORT
+  }
+};
+
+externalAPIProperties = {
+
+};
+
+module.exports = {
+  mongoProperties,
+  serverProperties,
+  externalAPIProperties
+};
