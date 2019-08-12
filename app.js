@@ -11,7 +11,6 @@ var { clientRoot } = require("./resolvers/client_resolver");
 
 const config = require("./config.js");
 
-
 // Lets build our Root
 var root = { ...productRoot, ...clientRoot };
 
