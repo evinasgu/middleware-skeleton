@@ -1,13 +1,13 @@
-var { getProducts, createProduct } = require("../data/product");
+var { getProducts, addProduct } = require("../data/product");
 
 var productRoot = {
   products: () => {
     return getProducts();
   },
-  createProduct: args  => {
-    const { name, description } = args;
-    const productResult = createProduct(name, description);
-    return `Created: ${productResult.id} ${productResult.name} - ${productResult.description}`;
+  addProduct: args  => {
+    const { name , sku , price } = args;
+    const productResult = addProduct(name, sku , price);
+    return `Created: ${productResult.name} - SKU ${productResult.sku}`;
   },
   product: ({ id }) => {
     const products = getProducts();

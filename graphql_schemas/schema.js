@@ -4,15 +4,21 @@ var { buildSchema } = require('graphql');
 var schema = buildSchema(`
   type Product {
     name: String,
-    description: String,
-    id: Int
+    sku: Int,
+    price: Float
   },
   type Client {
     name: String,
-    id: Int
+    age: Int
   },
   input ClientInput {
-    name: String
+    name: String,
+    age: Int
+  },
+  input ProductInput {
+    name: String,
+    sku: Int,
+    price: Int
   },
   type Query {
     products: [Product],
@@ -20,7 +26,7 @@ var schema = buildSchema(`
     product(id: Int!): Product
   },
   type Mutation {
-    createProduct(name: String!, description: String!): String,
+    createProduct(product: ProductInput!): String,
     createClient(client: ClientInput!): String
   }
 `);
