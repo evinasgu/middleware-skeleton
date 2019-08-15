@@ -1,3 +1,5 @@
+//const { getDb } = require("./db");
+
 let clients = [];
 
 const addClient = client => {
@@ -7,7 +9,15 @@ const addClient = client => {
 };
 
 const getClients = () => {
-  return clients;
+  const db = app.getDb();
+  const collection = db.collection('clients');
+  result = [];
+  
+  collection.find().toArray((err, items) => {
+    result.push(items)
+  });
+
+  return result;
 };
 
 module.exports = {

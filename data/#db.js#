@@ -19,7 +19,7 @@ function initDB(callback) {
     return callback(null, _db);
   }
 
-  return client.connect(config.mongoProperties.local.connectionString,
+  client.connect(config.mongoProperties.local.connectionString,
 		 config.mongoProperties.local.options,
 		 connected);  
 }

@@ -1,6 +1,21 @@
+function getEnvironment (environment) {
+  if (environment === "LOCAL") {
+    return "local";
+  } else if (environment === "DEV") {
+    return "development";
+  } else if (environment === "PROD") {
+    return "production";
+  } else if (environment === undefined) {
+    throw "Environment not defined";
+  }
+};
+
+
+
 mongoProperties = {
   local: {
-    connectionString: ""
+    connectionString: "mongodb://localhost:27020/middleware_database",
+    options: { useNewUrlParser: true }
   },
   development: {
     connectionString: process.env.MONGO_CONNECTION_STRING      
@@ -27,6 +42,7 @@ externalAPIProperties = {
 };
 
 module.exports = {
+  getEnvironment,
   mongoProperties,
   serverProperties,
   externalAPIProperties

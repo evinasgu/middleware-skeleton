@@ -11,7 +11,8 @@ var { clientRoot } = require("./resolvers/client_resolver");
 const { initDB, getDB} = require("./data/db")
 
 const config = require("./config.js");
-
+const environment = config.getEnvironment(process.env.MIDDLEWARE_ENVIRONMENT)
+const port = config.serverProperties[environment].port;
 
 // Lets build our Root
 var root = { ...productRoot, ...clientRoot };
@@ -53,8 +54,5 @@ initDB(function(err) {
     console.log("  PROMART skeleton graphql api is running!!!");
   });
 });
-
-//app.listen(4000);
-//console.log();
 
 module.exports = app;
