@@ -1,15 +1,17 @@
 var { getClients, addClient } = require("../data/client");
 
-var clientRoot = {
-  clients: () => {
-    return getClients();
-  },
-  createClient: args => {
-    const { client } = args;
-    return addClient(client);
-  }
-};
+function getClientRoot(handler) {
+  return clientRoot = {
+    clients: () => {
+      return getClients(handler);
+    },
+    createClient: (args) => {
+      const { client } = args;
+      return addClient(handler, client);
+    }
+  }; 
+}
 
 module.exports = {
-  clientRoot
+  getClientRoot
 };

@@ -14,7 +14,8 @@ function getEnvironment (environment) {
 
 mongoProperties = {
   local: {
-    connectionString: "mongodb://localhost:27020/middleware_database",
+    connectionString: "mongodb://localhost:27017/middleware_database",
+    dbName: "middleware_database",
     options: { useNewUrlParser: true }
   },
   development: {

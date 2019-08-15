@@ -1,24 +1,19 @@
-//const { getDb } = require("./db");
+const COLLECTION_NAME = "clients";
 
-let clients = [];
-
-const addClient = client => {
-  const nextId = clients.length === 0 ? 1 : clients[clients.length - 1].id + 1;
-  clients = [...clients, { ...client, id: nextId }];
-  return "success";
-};
-
-const getClients = () => {
-  const db = app.getDb();
-  const collection = db.collection('clients');
-  result = [];
-  
-  collection.find().toArray((err, items) => {
-    result.push(items)
+function addClient(handler, client) {
+  handler.inserDocument(COLLECTION_NAME, client, function(err, success) {
+    console.log("Document added!");
   });
+}
 
+function getClients(handler) {
+  var result = []; 
+  handler.readCollection(COLLECTION_NAME).toArray(function (err, document) {
+    result = document
+    console.log(document);
+  });
   return result;
-};
+}
 
 module.exports = {
   addClient,
